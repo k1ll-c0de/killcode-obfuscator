@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>KillCode - Обфускатор для Java</title>
+	<meta name="theme-color" content="#FFA500">
+	<meta property="og:title" content="KillCode - Мощный Обфускатор для Java">
+	<meta property="og:description" content="Обфускатор KillCode для Java позволяет защитить ваш код от декомпиляции и обратного проектирования. А так-же добавлять свои водяные знаки прямо в код .jar или же замазать все арабскими каракулями!">
     <style>
         body {
             background-color: #111;
@@ -11,7 +14,7 @@
 
     .container {
         margin: 50px auto;
-        max-width: 800px;
+        max-width: 60%;
         padding: 20px;
         background-color: #222;
         border-radius: 5px;
@@ -59,45 +62,25 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">KillCode - Обфускатор для Java</h1>
-        <div class="code-container">
-            <pre class="code">
-private static void parseInput(String input) {
-    JarFile jarFile = null;
-    try {
-        jarFile = new JarFile(input);
-    }
-    catch (IOException e) {
-        e.printStackTrace();
-    }
-    JarFile finalJarFile = jarFile;
-    jarFile.stream().forEach(entry -> {
-        try {
-            if (entry.getName().endsWith(".class")) {
-                ClassReader classReader = new ClassReader(finalJarFile.getInputStream((ZipEntry)entry));
-                ClassNode classNode = new ClassNode();
-                classReader.accept(classNode, 2);
-                classes.put(classNode.name, classNode);
-            } else if (!entry.isDirectory()) {
-                outputStream.putNextEntry(new ZipEntry(entry.getName()));
-                outputStream.write(OutputUtil.toByteArray(finalJarFile.getInputStream((ZipEntry)entry)));
-                outputStream.closeEntry();
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    });
-    try {
-        jarFile.close();
-    }
-    catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-            </pre>
+        <h1 class="title">KillCode | Мощный обфускатор для Java</h1>
+		<p>KillCode - Обфускатор для Java приложений имеющий кастомные алгоритмы обфускации не доступные для публичного просмотра что позволяет обеспечить надёжную защиту вашего кода, разработан в исследовательских целях под общее использование.</p>
+        <br><p>Так-же у вас есть возможность устанавливать свой водяной знак на весь код, вместо арабских символов можно поставить свою надпись. (в настройках обфускатора)</p>
+		<div class="code-container">
+            <img class="code" style="height: 150px;" src="https://i.imgur.com/TuvgSXq.png" />
         </div>
-        <a href="#" class="download-button">Скачать KillCode</a>
+		<br><p style="font-weight: bold;">UPD 06.04.2023: Вышло обновление обфускации 1.1, обновитесь что бы улучшить защиту.</p>
+		<br><p>Код до обфускации:</p>
+		<div class="code-container">
+            <img class="code" style="height: 350px;" src="https://i.imgur.com/EZfzOq9.png" />
+        </div>
+		<br><p>Код после обфускации:</p>
+		<div class="code-container">
+            <img class="code" style="height: 700px;" src="https://i.imgur.com/wbbZkNI.png" />
+        </div>
+        <a href="https://k1ll-c0de.github.io/killcode-obfuscator/KillCode%20Obfuscator%201.1-BETA.jar" class="download-button">Скачать KillCode v1.1-BETA</a>
+		<a href="#donate" class="download-button">Поддержать автора</a>
+		<a href="https://t.me/ivan_putimchev54" class="download-button">Купить улучшенную версию (1.000 руб)</a>
+		<p>Улучшенная версия есть только у 17-ти покупателей, стань одним из них, защищай свой код!</p>
     </div>
 </body>
 </html>
