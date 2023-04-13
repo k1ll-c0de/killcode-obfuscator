@@ -1,1 +1,103 @@
-Download it now!
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KillCode - Обфускатор для Java</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #eee;
+            font-family: Arial, sans-serif;
+        }
+
+    .container {
+        margin: 50px auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #222;
+        border-radius: 5px;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .code-container {
+        background-color: #000;
+        padding: 10px;
+        overflow-x: auto;
+        border-radius: 5px;
+    }
+
+    .code {
+        color: #7FDBFF;
+        font-size: 14px;
+        white-space: pre;
+    }
+
+    .download-button {
+        display: block;
+        width: 200px;
+        margin: 30px auto;
+        padding: 15px 20px;
+        background-color: #0074D9;
+        color: #fff;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .download-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">KillCode - Обфускатор для Java</h1>
+        <div class="code-container">
+            <pre class="code">
+private static void parseInput(String input) {
+    JarFile jarFile = null;
+    try {
+        jarFile = new JarFile(input);
+    }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
+    JarFile finalJarFile = jarFile;
+    jarFile.stream().forEach(entry -> {
+        try {
+            if (entry.getName().endsWith(".class")) {
+                ClassReader classReader = new ClassReader(finalJarFile.getInputStream((ZipEntry)entry));
+                ClassNode classNode = new ClassNode();
+                classReader.accept(classNode, 2);
+                classes.put(classNode.name, classNode);
+            } else if (!entry.isDirectory()) {
+                outputStream.putNextEntry(new ZipEntry(entry.getName()));
+                outputStream.write(OutputUtil.toByteArray(finalJarFile.getInputStream((ZipEntry)entry)));
+                outputStream.closeEntry();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    });
+    try {
+        jarFile.close();
+    }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+            </pre>
+        </div>
+        <a href="#" class="download-button">Скачать KillCode</a>
+    </div>
+</body>
+</html>
